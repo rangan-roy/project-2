@@ -20,7 +20,7 @@ if(isset($_GET['category_id']))
 	
 	if($totalPosts != 0)
 	{
-		$message = 'Total '.$totalPosts.' posts found for <b>'.$categoryName['name'].'</b> category';
+		$message = 'Total '.$totalPosts.' posts found for <b>'.$categoryName.'</b> category';
 	}
 	else $message = 'Unknown category';
 }
@@ -35,7 +35,7 @@ else if(isset($_GET['author_id']))
 	
 	if($totalPosts != 0)
 	{
-		$message = 'Total '.$totalPosts.' posts found of <b>'.$authorName['username'].'</b>';
+		$message = 'Total '.$totalPosts.' posts found of <b>'.$authorName.'</b>';
 	}
 	else $message = 'Unknown author';
 }

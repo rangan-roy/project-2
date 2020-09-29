@@ -12,7 +12,7 @@ class App extends QueryExecute
 	
 	public function getLastPostsOfEveryCategory()
 	{
-		$query = "SELECT posts_desc.*, categories.name AS category_name FROM (SELECT * FROM posts WHERE is_jumbo = 0 ORDER BY id DESC) AS posts_desc JOIN categories ON posts_desc.category_id = categories.id GROUP BY categories.id";
+		$query = "SELECT posts.* FROM (SELECT MAX(id) AS post_id FROM posts WHERE is_jumbo != 1 GROUP BY category_id) AS last_ids JOIN posts WHERE last_ids.post_id = posts.id ORDER BY post_id DESC";
 		return $this->executeQuery($query);
 	}
 	
@@ -75,14 +75,14 @@ class App extends QueryExecute
 	{
 		$query = "SELECT name FROM categories WHERE id = $categoryId";
 		$result = $this->executeQuery($query);
-		return mysqli_fetch_assoc($result);
+		return mysqli_fetch_assoc($result)['name'];
 	}
 	
 	public function getAuthorNameById($adminId)
 	{
 		$query = "SELECT username FROM admins WHERE id = $adminId";
 		$result = $this->executeQuery($query);
-		return mysqli_fetch_assoc($result);
+		return mysqli_fetch_assoc($result)['username'];
 	}
 	
 	public function getPostsBySearch($search, $pageNo, $postPerPage)
