@@ -12,6 +12,8 @@ use Classes\User;
 use Classes\App;
 
 $user = new User();
+$userInfo = $user->getCurrentUserInfo();
+$image = $userInfo['image'];
 
 if(isset($_POST['first_name'], $_POST['last_name'], $_FILES['image']))
 {
@@ -22,10 +24,9 @@ if(isset($_POST['first_name'], $_POST['last_name'], $_FILES['image']))
 }
 else
 {
-    $userInfo = $user->getCurrentUserInfo();
+    	
 	$firstName = $userInfo['first_name'];
 	$lastName = $userInfo['last_name'];
-	$image = $userInfo['image'];
 	$message = '';
 }
 
