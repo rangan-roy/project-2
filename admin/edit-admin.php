@@ -13,6 +13,7 @@ use Classes\Admin;
 $adminId = (int)$_GET['admin_id'];
 $admin = new Admin();
 $adminInfo = $admin->getAdminInfoById($adminId);
+$image = $adminInfo['image'];
 $message = '';
 
 if($adminInfo)
@@ -34,7 +35,6 @@ if($adminInfo)
 		$lastName = $adminInfo['last_name'];
 		$username = $adminInfo['username'];
 		$email = $adminInfo['email'];
-		$image = $adminInfo['image'];
 	}
 }
 else $message = 'Unknown admin to edit.';
